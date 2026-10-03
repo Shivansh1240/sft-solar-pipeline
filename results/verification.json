@@ -1,0 +1,254 @@
+[
+  {
+    "name": "flux_conservation_1d",
+    "description": "Net flux of a random field under advection + diffusion (no decay), all schemes",
+    "metric": "max |dPhi| / unsigned flux",
+    "value": 3.566436890855291e-15,
+    "criterion": "< 1e-12",
+    "passed": true,
+    "data": {
+      "by_scheme": {
+        "ssp2": 1.131863204882218e-15,
+        "ars2": 5.1254182862591e-16,
+        "euler": 3.566436890855291e-15
+      }
+    }
+  },
+  {
+    "name": "flux_conservation_2d",
+    "description": "Net flux of a random 2-D field with differential rotation",
+    "metric": "max |dPhi| / unsigned flux",
+    "value": 1.3538241745055066e-17,
+    "criterion": "< 1e-12",
+    "passed": true,
+    "data": {}
+  },
+  {
+    "name": "dipole_normalisation",
+    "description": "Axial dipole of B = sin(lat) on a 1 degree grid",
+    "metric": "|D - 1|",
+    "value": 1.2691184195556815e-05,
+    "criterion": "< 1e-4",
+    "passed": true,
+    "data": {}
+  },
+  {
+    "name": "exponential_decay",
+    "description": "Uniform field with tau = 5 yr after 5 yr (dt = 1 day) vs exp(-1)",
+    "metric": "relative error",
+    "value": 1.2124331212804724e-08,
+    "criterion": "< 1e-6",
+    "passed": true,
+    "data": {}
+  },
+  {
+    "name": "differential_rotation_exact",
+    "description": "Pure differential rotation for 0.5 yr vs the exact shifted field",
+    "metric": "max abs error [G]",
+    "value": 8.104628079763643e-15,
+    "criterion": "< 1e-12",
+    "passed": true,
+    "data": {}
+  },
+  {
+    "name": "axisymmetric_consistency",
+    "description": "Longitude average of a 2-D run vs the 1-D run (linear scheme, rotation on)",
+    "metric": "max relative difference",
+    "value": 5.169890161103826e-16,
+    "criterion": "< 1e-12",
+    "passed": true,
+    "data": {}
+  },
+  {
+    "name": "positivity",
+    "description": "Pure advection of a non-negative top-hat (SSP2 + van Leer, CFL 0.5)",
+    "metric": "min B / max B0",
+    "value": -7.884118525666083e-65,
+    "criterion": ">= -1e-12",
+    "passed": true,
+    "data": {}
+  },
+  {
+    "name": "hale_joy_dipole_sign",
+    "description": "A Joy-tilted, Hale-ordered BMR pushes the dipole negative in odd cycles, positive in even cycles, in both hemispheres",
+    "metric": "dipole of single BMRs [G]",
+    "value": 0.009217506251481876,
+    "criterion": "sign pattern (-,-,+,+)",
+    "passed": true,
+    "data": {
+      "cycle23_lat+20": -0.009217506251481896,
+      "cycle23_lat-20": -0.009217506251481876,
+      "cycle24_lat+20": 0.009217506251481896,
+      "cycle24_lat-20": 0.009217506251481876
+    }
+  },
+  {
+    "name": "polar_reversal",
+    "description": "Two synthetic cycles (23, 24) from zero field, tau = 5 yr: dipole sign alternates",
+    "metric": "dipole at end of cycle 23, 24 [G]",
+    "value": -1.9274525234423234,
+    "criterion": "D(11 yr) < 0 < D(22 yr)",
+    "passed": true,
+    "data": {
+      "D_11yr": -1.9274525234423234,
+      "D_22yr": 1.7254229276667856
+    }
+  },
+  {
+    "name": "time_order_ssp2",
+    "description": "Temporal convergence of ssp2 (advection + diffusion + decay, 1 yr, vs dt -> 0)",
+    "metric": "fitted order",
+    "value": 1.9663866311813971,
+    "criterion": "in [1.90, 2.15]",
+    "passed": true,
+    "data": {
+      "dt_days": [
+        11.4140625,
+        5.70703125,
+        2.853515625,
+        1.4267578125
+      ],
+      "error": [
+        0.0029252098976289,
+        0.0007576567197187245,
+        0.0001939068256029408,
+        4.9013114269413904e-05
+      ],
+      "order": 1.9663866311813971
+    }
+  },
+  {
+    "name": "time_order_ars2",
+    "description": "Temporal convergence of ars2 (advection + diffusion + decay, 1 yr, vs dt -> 0)",
+    "metric": "fitted order",
+    "value": 1.9947059082950551,
+    "criterion": "in [1.90, 2.15]",
+    "passed": true,
+    "data": {
+      "dt_days": [
+        11.4140625,
+        5.70703125,
+        2.853515625,
+        1.4267578125
+      ],
+      "error": [
+        0.002457189546295757,
+        0.0006122313598040385,
+        0.00015453345627580717,
+        3.874199437037262e-05
+      ],
+      "order": 1.9947059082950551
+    }
+  },
+  {
+    "name": "time_order_euler",
+    "description": "Temporal convergence of euler (advection + diffusion + decay, 1 yr, vs dt -> 0)",
+    "metric": "fitted order",
+    "value": 1.007651512855543,
+    "criterion": "in [0.90, 1.15]",
+    "passed": true,
+    "data": {
+      "dt_days": [
+        11.4140625,
+        5.70703125,
+        2.853515625,
+        1.4267578125
+      ],
+      "error": [
+        0.21509708131767757,
+        0.10791898424562874,
+        0.053697870940134784,
+        0.026458812155315314
+      ],
+      "order": 1.007651512855543
+    }
+  },
+  {
+    "name": "space_order_diffusion",
+    "description": "Diffusion of the Legendre mode P_3 vs exact decay (L-inf)",
+    "metric": "fitted order",
+    "value": 1.9980276455076689,
+    "criterion": ">= 1.9",
+    "passed": true,
+    "data": {
+      "n_lat": [
+        45,
+        90,
+        180,
+        360
+      ],
+      "error": [
+        0.0014410635746401335,
+        0.00036145296276679506,
+        9.043697237265391e-05,
+        2.2613314385910854e-05
+      ],
+      "order": 1.9980276455076689
+    }
+  },
+  {
+    "name": "space_order_mms",
+    "description": "Manufactured solution, full operator with van Leer limiter (L2)",
+    "metric": "fitted order",
+    "value": 2.0193353538034113,
+    "criterion": ">= 1.9",
+    "passed": true,
+    "data": {
+      "n_lat": [
+        45,
+        90,
+        180,
+        360
+      ],
+      "error": [
+        0.0040134653801103155,
+        0.0009821962763648761,
+        0.00024251515612776477,
+        6.0219564600616735e-05
+      ],
+      "order": 2.0193353538034113
+    }
+  },
+  {
+    "name": "space_order_steady_state",
+    "description": "Advection-diffusion steady state for net flux, sin(2 lat) flow (L-inf)",
+    "metric": "fitted order",
+    "value": 2.1184124750407527,
+    "criterion": ">= 1.9",
+    "passed": true,
+    "data": {
+      "n_lat": [
+        45,
+        90,
+        180
+      ],
+      "error": [
+        0.009465085665551324,
+        0.002128895513233579,
+        0.000502010906574049
+      ],
+      "order": 2.1184124750407527
+    }
+  },
+  {
+    "name": "space_order_2d_harmonic",
+    "description": "2-D diffusion of the harmonic P_4^3(sin lat) cos(3 lon) (L-inf)",
+    "metric": "fitted order",
+    "value": 2.000851547019904,
+    "criterion": ">= 1.9",
+    "passed": true,
+    "data": {
+      "n_lat": [
+        45,
+        90,
+        180
+      ],
+      "error": [
+        0.0007389893330949306,
+        0.00018476802169249562,
+        4.613234216998561e-05
+      ],
+      "order": 2.000851547019904
+    }
+  }
+]
