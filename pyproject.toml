@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sft-solar"
+version = "1.0.0"
+description = "Surface Flux Transport (SFT) solver for the solar photospheric magnetic field"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Shivansh Mishra" }]
+dependencies = [
+    "numpy>=1.23",
+    "scipy>=1.9",
+]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.6"]
+dev = ["pytest>=7", "ruff>=0.5", "matplotlib>=3.6"]
+
+[project.scripts]
+sft = "sft.cli:main"
+
+[project.urls]
+Repository = "https://github.com/Shivansh1240/sft-solar-pipeline"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = ["slow: longer-running convergence checks"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "NPY"]
+ignore = ["E741"]  # l is the conventional name for the Legendre degree
