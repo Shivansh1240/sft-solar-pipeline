@@ -1,0 +1,21 @@
+{
+  "provenance": "Measured on 2026-10-03 against the pre-rebuild code at commit cd3f82e (src/sft/sft_master.py), on the same machine as the published benchmarks (Intel Xeon @ 2.10GHz, Python 3.11, NumPy 2.4). Reproduce with: git checkout cd3f82e.",
+  "runtime": {
+    "1d_11yr_1deg_s": 75.0,
+    "1d_11yr_1deg_note": "RKIMEX1D, 179 cells, default dt = 1800 s; 1 simulated year took 6.8 s, extrapolated x11",
+    "2d_1yr_2deg_s": 630.0,
+    "2d_1yr_2deg_note": "RKIMEX2D, 90 x 180 cells, dt = 1800 s; 35.9 ms per step over 48 steps, extrapolated to 17532 steps"
+  },
+  "time_order": {
+    "description": "RKIMEX1D ('SSP2(2,2,2)'), 2 deg grid, eta = 250 km^2/s, u0 = 15 m/s, Gaussian at 15 deg, 0.5 yr, max error vs dt = T/5120",
+    "dt_days": [4.566, 2.283, 1.141, 0.571],
+    "error": [1.236e-2, 6.029e-3, 2.940e-3, 1.416e-3],
+    "observed_order": 1.04,
+    "same_operators_with_correct_ars222_error": [3.44e-4, 8.63e-5, 2.16e-5, 5.38e-6],
+    "same_operators_with_correct_ars222_order": 2.0
+  },
+  "spectral_reference": {
+    "description": "SpectralSFT1D projects onto P_l(cos lat) instead of P_l(sin lat); round-trip of B = sin(lat) with l_max = 10",
+    "roundtrip_max_error": 0.99985
+  }
+}
